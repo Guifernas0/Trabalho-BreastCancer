@@ -1,6 +1,6 @@
 from pickle import load
 
-#Nova paciente já no formato do get_dummies (mesma ordem de colunas do treinamento)
+#Nova paciente ja no formato do get_dummies (mesma ordem de colunas do treinamento)
 nova_paciente=[[
     3,                                  #deg-malig
     0, 0, 1, 0, 0, 0,                   #age: 20-29, 30-39, 40-49, 50-59, 60-69, 70-79
@@ -15,7 +15,8 @@ nova_paciente=[[
 normalizador = load(open('breast_cancer_normalizador.model', 'rb'))
 nova_paciente=normalizador.transform(nova_paciente)
 
-cancer_modelo = load(open('breast_cancer_modelo.model', 'rb'))
+#Carregar o modelo de melhor acuracia (Random Forest)
+cancer_modelo = load(open('breast_cancer_rf.model', 'rb'))
 
 diagnostico_nova_paciente = cancer_modelo.predict(nova_paciente)
 print(diagnostico_nova_paciente)
